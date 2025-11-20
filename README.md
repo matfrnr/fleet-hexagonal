@@ -21,10 +21,24 @@ Le projet est organisé selon les principes de l'architecture hexagonale :
 
 ```
 src/main/java/org/ort/starwars/fleet/
-├── api/
-│   └── controllers/          # Points d'entrée REST
-├── configuration/            # Configuration de l'application
-├── utils/                    # Utilitaires et helpers
+├── application/              # Couche Application
+│   ├── configuration/        # Configuration Spring
+│   └── jobs/                 # Tâches ETL
+├── domain/                   # Couche Métier (Cœur hexagonal)
+│   └── models/
+│       ├── entities/         # Entités du domaine
+│       ├── enums/            # Énumérations métier
+│       ├── repositories/     # Ports de sortie (interfaces)
+│       └── ports/
+│           ├── in/           # Ports d'entrée (Use Cases)
+│           └── out/          # Ports de sortie (Repositories)
+│   └── services/             # Services métier & Use Cases
+├── infrastructure/           # Couche Infrastructure
+│   ├── controllers/          # Adapters REST (Points d'entrée)
+│   ├── repositories/         # Implémentations des repositories
+│   ├── dtos/                 # Data Transfer Objects
+│   ├── mappers/              # Mappers DTO <-> Entités
+│   └── utils/                # Utilitaires techniques
 └── FleetApplication.java     # Classe principale
 ```
 
